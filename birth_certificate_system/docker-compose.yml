@@ -53,9 +53,9 @@ services:
       - mysql
       - rabbitmq
 
-  frontend:
-    build: ./frontend
-    ports:
-      - "3000:3000"
-    depends_on:
-      - application_service
+  # frontend:
+  #   build: ./frontend
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - application_service
