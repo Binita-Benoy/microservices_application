@@ -1,11 +1,17 @@
 services:
   mysql:
-    image: mysql:8
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: birth_cert
-    ports:
-      - "3306:3306"
+  image: mysql:8
+  container_name: mysql_db
+  environment:
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_DATABASE: birth_cert
+  ports:
+    - "3306:3306"
+  volumes:
+    - mysql_data:/var/lib/mysql
+volumes:
+  mysql_data:
+
 
   rabbitmq:
     image: rabbitmq:3-management
@@ -53,9 +59,9 @@ services:
       - mysql
       - rabbitmq
 
-  frontend:
-    build: ./frontend
-    ports:
-      - "3000:3000"
-    depends_on:
-      - application_service
+  # frontend:
+  #   build: ./Front_End
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - application_service
