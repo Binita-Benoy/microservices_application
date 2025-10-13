@@ -1,61 +1,61 @@
-services:
-  mysql:
-    image: mysql:8
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: birth_cert
-    ports:
-      - "3306:3306"
+# services:
+#   mysql:
+#     image: mysql:8
+#     environment:
+#       MYSQL_ROOT_PASSWORD: root
+#       MYSQL_DATABASE: birth_cert
+#     ports:
+#       - "3306:3306"
 
-  rabbitmq:
-    image: rabbitmq:3-management
-    ports:
-      - "5672:5672"
-      - "15672:15672"
+#   rabbitmq:
+#     image: rabbitmq:3-management
+#     ports:
+#       - "5672:5672"
+#       - "15672:15672"
 
-  application_service:
-    build: ./application_service
-    ports:
-      - "5001:5001"
-    depends_on:
-      - mysql
-      - rabbitmq
+#   application_service:
+#     build: ./application_service
+#     ports:
+#       - "5001:5001"
+#     depends_on:
+#       - mysql
+#       - rabbitmq
 
-  verification_service:
-    build: ./verification_service
-    ports:
-      - "5002:5002"
-    depends_on:
-      - mysql
-      - rabbitmq
+#   verification_service:
+#     build: ./verification_service
+#     ports:
+#       - "5002:5002"
+#     depends_on:
+#       - mysql
+#       - rabbitmq
 
-  payment_service:
-    build: ./payment_service
-    ports:
-      - "5003:5003"
-    depends_on:
-      - mysql
-      - rabbitmq
+#   payment_service:
+#     build: ./payment_service
+#     ports:
+#       - "5003:5003"
+#     depends_on:
+#       - mysql
+#       - rabbitmq
 
-  approval_service:
-    build: ./approval_service
-    ports:
-      - "5004:5004"
-    depends_on:
-      - mysql
-      - rabbitmq
+#   approval_service:
+#     build: ./approval_service
+#     ports:
+#       - "5004:5004"
+#     depends_on:
+#       - mysql
+#       - rabbitmq
 
-  notification_service:
-    build: ./notification_service
-    ports:
-      - "5005:5005"
-    depends_on:
-      - mysql
-      - rabbitmq
+#   notification_service:
+#     build: ./notification_service
+#     ports:
+#       - "5005:5005"
+#     depends_on:
+#       - mysql
+#       - rabbitmq
 
-  # frontend:
-  #   build: ./frontend
-  #   ports:
-  #     - "3000:3000"
-  #   depends_on:
-  #     - application_service
+#   # frontend:
+#   #   build: ./frontend
+#   #   ports:
+#   #     - "3000:3000"
+#   #   depends_on:
+#   #     - application_service

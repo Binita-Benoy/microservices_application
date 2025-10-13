@@ -1,0 +1,42 @@
+# No top-level version (Compose v2)
+name: application_service_stack
+
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: application_service-mysql-1
+    environment:
+      MYSQL_ROOT_PASSWORD: changeme
+    ports:
+      - "3310:3306"                   # expose if you want GUI tools (Workbench/DBeaver)
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db/init:/docker-entrypoint-initdb.d:ro  # run DDL on first start
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-pchangeme"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  application_service:
+    build:
+      context: .                      # Dockerfile next to this compose
+    container_name: application_service-1
+    env_file:
+      - ./.env
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - "5012:5010"
+    volumes:
+      - app_uploads:/app/uploads      # persist uploaded files
+    restart: unless-stopped
+    # If you want live code reload during dev, you can also bind-mount:
+    # volumes:
+    #   - .:/app
+    #   - app_uploads:/app/uploads
+
+volumes:
+  db_data: {}
+  app_uploads: {}

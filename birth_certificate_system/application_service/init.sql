@@ -1,0 +1,19 @@
+CREATE DATABASE IF NOT EXISTS user_db;
+USE user_db;
+
+CREATE TABLE IF NOT EXISTS birth_applications (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  user_id INT UNSIGNED NULL,
+  first_name VARCHAR(80) NOT NULL,
+  last_name  VARCHAR(80) NOT NULL,
+  dob DATE NOT NULL,
+  tob TIME NULL,
+  place_of_birth VARCHAR(190) NOT NULL,
+  hospital_name  VARCHAR(190) NOT NULL,
+  proof_path     VARCHAR(255) NOT NULL,
+  parent_id_path VARCHAR(255) NOT NULL,
+  status ENUM('SUBMITTED','UNDER_REVIEW','APPROVED','REJECTED') DEFAULT 'SUBMITTED',
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY idx_user_id (user_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
