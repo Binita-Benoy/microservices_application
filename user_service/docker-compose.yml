@@ -1,0 +1,32 @@
+name: user_service_stack
+
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: changeme
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-pchangeme"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  user_service:
+    build:
+      context: .
+    image: user_service:dev
+    env_file: .env
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - "5005:5005"
+    restart: unless-stopped
+
+volumes:
+  db_data:
