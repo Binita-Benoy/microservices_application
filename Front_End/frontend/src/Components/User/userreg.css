@@ -1,0 +1,67 @@
+.userregcustomer-form{
+    
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 95.5rem;
+    height: 46rem;
+}
+.userregcustomer-form form{   
+margin-top: -3rem;
+ height: 45rem;
+ width:50rem;
+ margin-left: 45rem;
+}
+.userregcustomer-form h1{
+    margin-left: 1rem;
+    margin-top: -10rem;
+    -webkit-text-fill-color: aliceblue;
+    font-family:  Lucida Console, Courier New, monospace;
+    font: weight 25px; 
+
+}
+.userregcustomer-details{
+    margin-top: 3rem;
+}
+.userregcustomer-name{
+    margin-left: 11rem;
+    margin-bottom: 1rem;
+    padding: 0.1rem;  
+}
+
+.userregno-email-pass{
+    width: 28.5rem;
+    margin-left: 0.8rem;
+
+}
+#userreg_email{
+    margin-top: -1.7rem;
+}
+#userreg_pass{
+    margin-top: -1.7rem; 
+}
+.userreg-conifrmpassword{
+    margin-top: 1.5rem;
+}
+
+.userregcustomer-form button{
+    margin-top: 1rem;
+    margin-left: 1rem;
+    width: 8rem;
+    -webkit-text-fill-color: black;
+}
+input[type="text"],[type="number"],[type="email"],[type="password"]{
+    background-color: rgba(240, 248, 255, 0.416);
+    -webkit-text-fill-color: black;   
+}
+
+.col-auto{
+    display: flex !important;
+    width: 15rem;
+    height: 2.3rem;  
+}
+
+#userreg_idnumber{
+    width: 28.5rem;
+    margin-left: 0.8rem;
+}
